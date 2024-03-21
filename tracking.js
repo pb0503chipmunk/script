@@ -18,18 +18,35 @@
                         return 'unknown device';
                     }
                 }
+
+                function getVisitorID() {
+                    // Generate or retrieve a unique identifier
+                let visitorId = localStorage.getItem('visitorId');
+                if (!visitorId) {
+                    visitorId = generateUniqueVisitorId();
+                    localStorage.setItem('visitorId', visitorId);
+                }
+            
+                function generateUniqueVisitorId() {
+                    return 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                }
+            } 
+
             
                 function trackVisitorSession() {
                     const sessionData = {
                         timestamp: new Date().toISOString(),
                         pageName: document.title,
-                        deviceType: getDeviceType()
+                        deviceType: getDeviceType(),
+                        visitorId: getVisitorID()
                     };
-            
+
+
+           
                     // Convert sessionData to a readable string
                     const sessionInfo = `Session Timestamp: ${sessionData.timestamp}\n` +
                                         `Page Name: ${sessionData.pageName}\n` +
-                                        `Device Type: ${sessionData.deviceType}`;
+                                        `Device Type: ${sessionData.deviceType}` + 'Visitor ID: ${visitorId}';
             
                     // Display the information in an alert message
                     alert(sessionInfo);
