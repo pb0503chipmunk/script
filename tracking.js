@@ -1,6 +1,6 @@
 
             //testing if the tracking.js gets called in Shopify
-            alert("This is an alert message!");
+            // alert("This is an alert message!");
 
             document.addEventListener('DOMContentLoaded', function() {
                 function getDeviceType() {
